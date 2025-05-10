@@ -1,10 +1,28 @@
-<h1>Lists</h1>
-<div class="list-group-item">
-  <ul>
-    <% @lists.each do |list|%>
-      <li><%= link_to list.name, list_path(list) %></li>
-    <% end %>
-  </ul>
+<div class="container-fluid banner d-flex justify-content-center align-items-center mb-3"
+    style="background-image: url('https://media.istockphoto.com/id/504096800/photo/empty-comfortable-red-seats-with-numbers-in-cinema.jpg?s=612x612&w=0&k=20&c=OeD7Zzrxn_djdxGI4WzDSFaT5zUSWhkvgpIQCiK1uYw=');
+    background-position: bottom; background-size: cover; height: 300px;">
+  <%# https://media.istockphoto.com/id/504096800/photo/empty-comfortable-red-seats-with-numbers-in-cinema.jpg?s=612x612&w=0&k=20&c=OeD7Zzrxn_djdxGI4WzDSFaT5zUSWhkvgpIQCiK1uYw= %>
+    <div class="text-center text-white">
+      <h2>Save all kinds of movies</h2>
+    </div>
 </div>
 
-<%= link_to "Add a list", new_list_path%>
+  <div class="container">
+    <div class="d-flex justify-content-between mb-3">
+      <h4>My Lists</h4>
+      <%= link_to "Create a movie list", new_list_path, class: "btn btn-success text-white" %>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <% @lists.each do |list|%>
+          <div class="col-12 col-md-6 col-lg-4 mb-3">
+            <div class="card" style="width: 320px; height: 200px; background-image: url('https://as2.ftcdn.net/v2/jpg/12/21/88/75/1000_F_1221887556_EMA3qzCaMcnXYVOtNaOZUGY58BPNPtN0.jpg'); background-size: cover; background-position: center; color: white;">
+              <%= link_to list.name, list_path(list),  class: "card-body d-flex text-center text-white align-items-center justify-content-center" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

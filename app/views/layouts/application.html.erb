@@ -8,7 +8,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <div class="d-flex justify-content-between p-1">
+      <i class="fa-solid fa-film"></i>
+      <div>
+      <%= link_to "My lists", lists_path, class: "btn text-decoration-none" %>
+      <%= link_to "New list", new_list_path, class: "btn text-decoration-none" %>
+      </div>
+    </div>
+
     <%= yield :head %>
+
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>

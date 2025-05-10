@@ -1,17 +1,41 @@
-<h1><%= @list.name %></h1>
+
+<%# BANNER WITH MOVIE LIST NAME IN THE MIDDLE %>
+<div class="container-fluid banner d-flex justify-content-center align-items-center mb-3" style="background-image: url('https://as2.ftcdn.net/v2/jpg/12/21/88/75/1000_F_1221887556_EMA3qzCaMcnXYVOtNaOZUGY58BPNPtN0.jpg'); background-position: top; background-size: 100% 100%; background-repeat: no-repeat; height: 300px; ">
+  <div class="text-center text-white">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
+
 <div class="container">
-  <div class="list-group">
-    <% @bookmarks.each do |bookmark|%>
-      <div class="list-group-item">
-          <P><Strong><%= bookmark.movie.title%></strong></p>
-          <img src= "<%= bookmark.movie.poster_url %>" alt="poster image" width= 50%>
-          <p>Comment: <%= bookmark.comment %></p>
-          <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  <div class="d-flex justify-content-end mb-3">
+    <%= link_to "Bookmark a movie", new_list_bookmark_path(@list.id), class: "btn btn-success text-white" %>
+  </div>
+
+  <div class="row">
+    <% @bookmarks.each do |bookmark| %>
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="card rounded-3 m-2" style="width: 100%; max-width: 350px; height: 400px;">
+          <div class="card-img-top d-flex justify-content-center m-1">
+            <img src="<%= bookmark.movie.poster_url %>" alt="poster image" class="img-fluid" style="object-fit: cover; height: 200px;">
+          </div>
+          <div class="card-body px-2">
+            <p><strong><%= bookmark.movie.title %></strong> •
+              <%= bookmark.movie.rating %> <i class="fa-solid fa-star"></i></p>
+          </div>
+          <p class="text-muted px-2"><%= bookmark.movie.overview %></p>
+          <div class="d-flex justify-content-between px-2">
+            <p><i class="fa-solid fa-quote-left"></i><%= bookmark.comment %></p>
+            <%= link_to "delete", bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "text-danger text-decoration-none" %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
-
 </div>
+
 <hr>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list.id)%>
+
 <%= link_to "Back", lists_path %>
+<%# </div> %>
